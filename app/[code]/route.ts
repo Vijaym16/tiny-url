@@ -21,7 +21,7 @@ export async function GET(req: Request, ctx: any) {
   await db
     .update(links)
     .set({
-      totalClicks: link.totalClicks + 1,
+      totalClicks: (link.totalClicks ?? 0) + 1,
       lastClicked: new Date()
     })
     .where(eq(links.code, code));
