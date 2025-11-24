@@ -1,36 +1,192 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 🔗 TinyLink – URL Shortener with Analytics
 
-First, run the development server:
+TinyLink is a modern, full-stack URL shortener application built with **Next.js 15**, **Drizzle ORM**, **Neon PostgreSQL**, and **TailwindCSS**.
+It supports custom shortcodes, redirection, click analytics, and CRUD operations.
+
+---
+
+## 🚀 Live Demo
+
+🔗 **[https://tiny-url-umber.vercel.app](https://tiny-url-umber.vercel.app)**
+
+---
+
+## 🧰 Tech Stack
+
+### **Frontend & Backend**
+
+* Next.js 15 (App Router)
+* React
+* TailwindCSS
+
+### **Database**
+
+* PostgreSQL (Neon)
+* Drizzle ORM
+
+### **Deployment**
+
+* Vercel
+* GitHub
+
+---
+
+## ✨ Features
+
+* **Shorten long URLs**
+* **Custom shortcodes** supported
+* **Fast redirection** using dynamic routing
+* **Click analytics**
+
+  * Total click count
+  * Last clicked timestamp
+* **Delete shortened links**
+* **Responsive UI dashboard**
+* **Server Components + Server Actions**
+* **Fully deployed on Vercel**
+
+---
+
+## 📂 Project Structure
+
+```
+tiny-url/
+ ├─ app/
+ │   ├─ api/
+ │   │   └─ links/
+ │   │        └─ route.ts            # POST + GET APIs
+ │   │        └─ [code]/
+ │   │              └─ route.ts      # DELETE API
+ │   ├─ [code]/
+ │   │      └─ route.ts              # Redirect logic
+ │   └─ page.tsx                     # Dashboard UI
+ │
+ ├─ lib/
+ │   ├─ db.ts                        # Database connection
+ │   └─ schema.ts                    # Drizzle schema
+ │
+ ├─ public/
+ │
+ ├─ drizzle.config.ts                # Drizzle configuration
+ ├─ package.json
+ ├─ tsconfig.json
+ ├─ README.md
+```
+
+---
+
+## 🗄️ Database Schema
+
+Defined in `lib/schema.ts`:
+
+```
+links
+ ├─ code         (text, primary key)
+ ├─ targetUrl    (text)
+ ├─ totalClicks  (integer, default 0)
+ ├─ lastClicked  (timestamp)
+ ├─ createdAt    (timestamp, default now())
+```
+
+---
+
+## 📡 API Endpoints
+
+### **POST /api/links**
+
+Create a short URL.
+
+**Request Body:**
+
+```json
+{
+  "targetUrl": "https://example.com",
+  "code": "myshort"
+}
+```
+
+---
+
+### **GET /api/links**
+
+Fetch all shortened links for the dashboard.
+
+---
+
+### **DELETE /api/links/[code]**
+
+Delete a shortened URL entry.
+
+---
+
+### **GET /[code]**
+
+Redirect logic:
+
+* Finds the long URL
+* Increments click count
+* Updates last clicked timestamp
+* Redirects user
+
+---
+
+## 🧪 Running Locally
+
+### 1. Clone repository
+
+```bash
+git clone https://github.com/Vijaym16/tiny-url
+cd tiny-url
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Create `.env` file
+
+```
+DATABASE_URL=your_neon_database_url
+BASE_URL=http://localhost:3000
+```
+
+### 4. Apply database schema
+
+```bash
+npx drizzle-kit push
+```
+
+### 5. Start development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is deployed on **Vercel**.
 
-## Learn More
+### Required Environment Variables:
 
-To learn more about Next.js, take a look at the following resources:
+```
+DATABASE_URL=
+BASE_URL=
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 👤 Author
 
-## Deploy on Vercel
+**Vijay M**
+GitHub: [https://github.com/Vijaym16](https://github.com/Vijaym16)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Server Components + Server Actions
+
+Fully deployed on Vercel
