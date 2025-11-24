@@ -4,6 +4,6 @@ export const links = pgTable("links", {
   code: varchar("code", { length: 50 }).primaryKey(),
   targetUrl: text("target_url").notNull(),
   totalClicks: integer("total_clicks").default(0),
-  lastClicked: timestamp("last_clicked").default(null),
+  lastClicked: timestamp("last_clicked"),
   createdAt: timestamp("created_at").defaultNow(),
 });
